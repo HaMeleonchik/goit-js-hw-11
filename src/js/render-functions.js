@@ -23,8 +23,21 @@ export function getCorrectImages(event) {
     return;
   }
 
-  getImagesByQuery(inpValue);
-  input.value = '';
+  getImagesByQuery(inpValue)
+    .then(response => {
+      if (response.data.hits.length === 0) {
+        iziToastFoo();
+        clearGallery();
+      } else {
+        createGallery(response.data.hits);
+      }
+    })
+    .catch(error => console.log(error))
+
+    .finally(() => {
+      hideLoader();
+      input.value = '';
+    });
 }
 
 // SimpleLightbox

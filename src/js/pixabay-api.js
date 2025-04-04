@@ -16,18 +16,5 @@ export function getImagesByQuery(query) {
       orientation: 'horizontal',
       safesearch: true,
     },
-  })
-    .then(response => {
-      if (response.data.hits.length === 0) {
-        iziToastFoo();
-        clearGallery();
-      } else {
-        createGallery(response.data.hits);
-      }
-    })
-
-    .catch(error => console.log(error))
-    .finally(() => {
-      hideLoader();
-    });
+  }).then(response => response.data.hits);
 }
