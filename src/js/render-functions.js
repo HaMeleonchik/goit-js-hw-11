@@ -4,41 +4,9 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 // iziToast
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-// getImagesByQuery
-import { getImagesByQuery } from '/js/pixabay-api';
 
 const loader = document.querySelector('.loader');
 const container = document.querySelector('.gallery');
-
-const input = document.querySelector('input');
-
-export function getCorrectImages(event) {
-  event.preventDefault();
-  showLoader();
-  const inpValue = input.value.trim();
-  if (!inpValue) {
-    iziToastFoo();
-    clearGallery();
-    hideLoader();
-    return;
-  }
-
-  getImagesByQuery(inpValue)
-    .then(response => {
-      if (response.data.hits.length === 0) {
-        iziToastFoo();
-        clearGallery();
-      } else {
-        createGallery(response.data.hits);
-      }
-    })
-    .catch(error => console.log(error))
-
-    .finally(() => {
-      hideLoader();
-      input.value = '';
-    });
-}
 
 // SimpleLightbox
 let lightbox = new SimpleLightbox('.gallery a', {

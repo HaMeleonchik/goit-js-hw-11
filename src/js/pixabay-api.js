@@ -1,14 +1,8 @@
 // axios
 import axios from 'axios';
-import {
-  iziToastFoo,
-  clearGallery,
-  createGallery,
-  hideLoader,
-} from '/js/render-functions';
 
 export function getImagesByQuery(query) {
-  axios('https://pixabay.com/api/', {
+  return axios('https://pixabay.com/api/', {
     params: {
       key: '29412071-9345ed042e2c0766a655100be',
       q: query,
